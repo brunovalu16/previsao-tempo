@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
         marginTop: 320,
         letterSpacing: 5,
         color: "#b7b7b7",
-        marginLeft: 75,
+       alignSelf: 'center'
       
     },
 

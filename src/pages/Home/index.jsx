@@ -8,9 +8,12 @@ import { Api } from '../../config/api';
 export default function Home(){
 
     //aqui eu uso useState - city é o State e setCity é a mecanica dela "set" dela 
-    const [city, setCity] = useState("Goiânia")
-    const [ weatherData, setWeatherData] = useState(null)
-    const [ search, setSearch ] = useState("")
+    const [city, setCity] = useState("Goiânia");
+    const [ weatherData, setWeatherData] = useState(null);
+    const [ search, setSearch ] = useState("");
+
+
+  /* ===================================== FUNÇÕES ======================================================== */
     
     // função para executar a propriedade onPress no ícone 
     useEffect(() =>{
@@ -28,6 +31,20 @@ export default function Home(){
         }
         handleSearchPress();
     }, [city])
+    
+
+    // Função para buscar dados climáticos e atualizar weatherData
+    const fetchWeather = async () => {
+        const data = await Api(city);
+        setWeatherData(data);
+    };
+
+    useEffect(() => {
+        fetchWeather();
+    }, [city]);
+
+
+ /* ===================================== FIM FUNÇÕES ======================================================== */
 
 
 
@@ -41,6 +58,9 @@ export default function Home(){
                 style={styles.img}
             />
 
+
+{/*=============================================== INPUT E BOTÃO LUPA ==============================================================*/}
+
             <View style={styles.containerinput}>
                 <TextInput style={styles.Input}
                     placeholderTextColor={"#9D9D9D"}
@@ -50,9 +70,13 @@ export default function Home(){
                 <TouchableOpacity onPress={() => setCity(search)}>
                     <Ionicons name="search-sharp" size={30} color={"#fff"}></Ionicons>
                 </TouchableOpacity>
-
-
             </View>
+
+
+
+{/*=============================================== CAIXA COM GRAU E IMG. ==========================================================*/}
+
+
 
             <View style={styles.containermaster} />
                 <View style={styles.containersquare}>
@@ -70,20 +94,20 @@ export default function Home(){
                 </Text>
 
                 <Text style={styles.texclimate}>
-                     Tempestade
+                    {weatherData ? weatherData.weather[0].description : "Carregando..."}
                 </Text>
+            </View>
+
+            <Text style={styles.textime}>
+                09:00 AM
+            </Text>
 
              
-                 
+
+{/*=============================================== CAIXA AMANHÃ... ==========================================================*/}
 
 
                 
-            </View>
-
-                <Text style={styles.textime}>
-                     09:00 AM
-                </Text>
-
                 <View style={styles.nextclimate}>
                     <Image
                         source={require("../../assets/img/iconcloud.png")}
@@ -95,22 +119,15 @@ export default function Home(){
 
                     <View style={styles.base}>
                         <Text style={styles.textgraucelsius2}>
-                            
+                            {weatherData ? Math.round(weatherData.main.temp) : "0"}°
                         </Text>
                         <Text style={styles.nexttexclimate2}>
                             Nublado
                         </Text>
 
-                </View>
+                    </View>
 
                 </View>
-
-                
-
-            
-
-        
-      </View>
+        </View>
     );
-    
 }

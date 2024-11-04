@@ -22,15 +22,17 @@ export default function Home(){
                 const data = await Api(city)
                 setWeatherData(data)
                 console.log(weatherData)
+
             }
             catch(error){
                 console.error(error);
+                
                 
             }
             
         }
         handleSearchPress();
-    }, [city])
+    }, [city]) /*lista de dependências */
     
 
     // Função para buscar dados climáticos e atualizar weatherData
@@ -41,7 +43,7 @@ export default function Home(){
 
     useEffect(() => {
         fetchWeather();
-    }, [city]);
+    }, [city]); /*lista de dependências */
 
 
  /* ===================================== FIM FUNÇÕES ======================================================== */

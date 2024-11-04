@@ -78,7 +78,7 @@ export const styles = StyleSheet.create({
     texclimate: {
         position: 'absolute',
         marginTop: 320,
-        letterSpacing: 5,
+        letterSpacing: 1,
         color: "#b7b7b7",
        alignSelf: 'center'
       

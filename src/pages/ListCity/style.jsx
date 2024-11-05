@@ -56,21 +56,5 @@ export const styles = StyleSheet.create({
         marginTop: 30,
     },
 
-    containerinput: {
-        flexDirection: "row",
-        alignItems: "center",
-        marginTop: 50,
-        backgroundColor: "#4C43C6",
-        marginLeft: 30,
-        marginEnd: 30,
-        justifyContent: "space-around",
-        borderRadius: 15,
-    },
-
-    Input: {
-        backgroundColor: "#4C43C6",
-        height: 40,
-        paddingRight: 70,
-        color: '#fff'
-    },
+    
 })

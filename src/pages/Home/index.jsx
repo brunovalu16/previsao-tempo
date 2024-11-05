@@ -1,8 +1,9 @@
 import { Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { styles } from './style';
 import { useState, useEffect } from 'react'; //serve para analizar o comportamento e renderizar na tela
-import Ionicons from '@expo/vector-icons/Ionicons'
 import { Api } from '../../config/api';
+
+import  Input  from '../../components/Input'
 
 
 export default function Home(){
@@ -63,17 +64,10 @@ export default function Home(){
 
 {/*=============================================== INPUT E BOTÃO LUPA ==============================================================*/}
 
-            <View style={styles.containerinput}>
-                <TextInput style={styles.Input}
-                    placeholderTextColor={"#9D9D9D"}
-                    placeholder="Pesquise um local..."
-                    onChangeText={(text) => setSearch(text)}
-                />
-                <TouchableOpacity onPress={() => setCity(search)}>
-                    <Ionicons name="search-sharp" size={30} color={"#fff"}></Ionicons>
-                </TouchableOpacity>
-            </View>
-
+            
+        <Input Titulo="Pesquise um local..." 
+        onChangeText={(text) => setSearch(text)}
+        onPress={() => setCity(search)} />
 
 
 {/*=============================================== CAIXA COM GRAU E IMG. ==========================================================*/}

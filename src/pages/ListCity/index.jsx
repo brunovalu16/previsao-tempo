@@ -5,6 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { Api } from '../../../src/config/api';
 
 import Input from '../../components/Input';
+import List from '../../components/List';
 
 
 export default function ListCity() {
@@ -17,10 +18,6 @@ export default function ListCity() {
 
 /*=============================================== FUNÇÕES ===============================================*/
 
-const handleRemovePress = () => {
-    Alert.alert("Deseja realmente excluir essa cidade?")
-}
-
 
 // Função para buscar dados climáticos e atualizar weatherData
 const fetchWeather = async () => {
@@ -29,8 +26,16 @@ const fetchWeather = async () => {
 };
 
 useEffect(() => {
-    fetchWeather();
-}, [city]); /*lista de dependências */
+    if (city) fetchWeather();
+}, [city]);
+
+// Função para remover a cidade
+const handleRemovePress = () => {
+    Alert.alert("Deseja realmente excluir essa cidade?");
+    
+}
+
+
 
 
 
@@ -40,58 +45,29 @@ useEffect(() => {
 /*=============================================== FIM UNÇÕES ===============================================*/    
    
 
-
-
-
-
-
-
-
-
-
-
-
 return ( 
-        <View style={styles.container}>
+    <View style={styles.container}>
+    
+    {/* LOGO SKY TRACKER */}
+        <Image
+            source={require("../../assets/img/logo-skyTracker.png")}
+            style={styles.img}
+        />
 
+    {/* INPUT E BOTÃO LUPA */}
+        <Input
+            Titulo="Adicione um local..."
+            onChangeText={(text) => setSearch(text)} // Atualiza a pesquisa
+            onPress={() => setCity(search)} // Define city com o valor de pesquisa ao pressionar
+        />
 
-
-            
-{/*=========================================== LOGO SKY TRACKER ==============================================================*/}            
-            
-            
-            <Image
-                source={require("../../assets/img/logo-skyTracker.png")}
-                style={styles.img}
-            />
-
-
- {/*=========================================== INPUT E BOTÃO LUPA ==============================================================*/}
-
-        <Input Titulo="Adicione um local..." 
-        onChangeText={(text) => setSearch(text)}
-        onPress={() => setCity(search)} />
-
-{/*=============================================== LISTA ==============================================================*/}
-
-
-            
-            <View style={styles.list}>
-                <View style={styles.square1}>
-                    <Text style={styles.TextGrau}>
-                        {weatherData ? Math.round(weatherData.main.temp) : "0"}°
-                    </Text>
-
-                    <Text style={styles.Text}> {city} </Text>
-
-                    <TouchableOpacity onPress={handleRemovePress}>
-                        <Ionicons style={styles.icon} name="trash-outline" size={25} color={"#c0c0c0"} />
-                    </TouchableOpacity>   
-                    
-                </View>
-             </View>
-            
-        </View>
+    {/* LISTA COM DADOS CLIMÁTICOS */}
+        <List
+            city={city}
+            weatherData={weatherData}
+            onRemovePress={handleRemovePress}
+        />
+    </View>
     )
 
 }

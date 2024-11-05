@@ -2,20 +2,21 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-nativ
 import Ionicons from '@expo/vector-icons/Ionicons'
 
                             // adicionar o restante das propriedades do TextInput
-export default function Input({Titulo,  onPress, onChangeText, ...prop}) {
+export default function Input({Titulo, onPress, onChangeText, ...props}) {
     return(
 
-            <View style={styles.container}>
-                <TextInput style={styles.Input}
-                    placeholderTextColor={"#9D9D9D"}
-                    placeholder={Titulo}
-                    onChangeText={onChangeText}
-                    {...prop}
-                />
-                <TouchableOpacity onPress={onPress}>
-                    <Ionicons name="search-sharp" size={30} color={"#fff"}></Ionicons>
-                </TouchableOpacity>
-            </View>
+        <View style={styles.container}>
+            <TextInput
+                style={styles.Input}
+                placeholderTextColor={"#9D9D9D"}
+                placeholder={Titulo}
+                onChangeText={onChangeText}
+                {...props}
+            />
+        <TouchableOpacity onPress={onPress}>
+            <Ionicons name="search-sharp" size={30} color={"#fff"} />
+        </TouchableOpacity>
+    </View>
     )
 };
 

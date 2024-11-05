@@ -76,22 +76,22 @@ export default function Home(){
 
             <View style={styles.containermaster} />
                 <View style={styles.containersquare}>
-                <Image
-                    source={require("../../assets/img/storm.png")}
-                    style={styles.imageInsideSquare}
-                />
+                    <Image
+                        source={require("../../assets/img/storm.png")}
+                        style={styles.imageInsideSquare}
+                    />
 
-                <Text style={styles.texcity}>
-                     {city}
-                </Text>
+                    <Text style={styles.texcity}>
+                        {city}
+                    </Text>
 
-                <Text style={styles.textgraucelsius}>
-                    {weatherData ? Math.round(weatherData.main.temp) : "0"}°
-                </Text>
+                    <Text style={styles.textgraucelsius}>
+                        {weatherData ? Math.round(weatherData.main.temp) : "0"}°
+                    </Text>
 
-                <Text style={styles.texclimate}>
-                    {weatherData ? weatherData.weather[0].description : "Carregando..."}
-                </Text>
+                    <Text style={styles.texclimate}>
+                        {weatherData ? weatherData.weather[0].description : "Carregando..."}
+                    </Text>
             </View>
 
             <Text style={styles.textime}>

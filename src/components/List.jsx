@@ -7,17 +7,11 @@ import { Api } from '../config/api';
 
 export default function List( {city, weatherData, onRemovePress} ) {
     
-    
 
 
 /*=============================================== FUNÇÕES ===============================================*/
 
-    const handleRemovePress = () => {
-        Alert.alert("Deseja realmente excluir essa cidade?")
-    }
-
-
-    // Função para buscar dados climáticos e atualizar weatherData
+   // Função para buscar dados climáticos e atualizar weatherData
     const fetchWeather = async () => {
         const data = await Api(city);
         setWeatherData(data);

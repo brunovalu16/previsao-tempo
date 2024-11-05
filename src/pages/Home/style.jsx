@@ -14,11 +14,6 @@ export const styles = StyleSheet.create({
         marginTop: 30,
     },
 
-    containermaster: {
-        marginLeft: 70,
-        marginTop: 10,
-    },
-
     containersquare: {
         width: '70%',             
         height: '45%',            
@@ -28,7 +23,8 @@ export const styles = StyleSheet.create({
         borderRadius: 30,
         position: 'relative',
         marginTop: 100,
-        marginLeft: 50
+        alignItems: 'center',
+        alignSelf: 'center'
     },
 
     imageInsideSquare: {

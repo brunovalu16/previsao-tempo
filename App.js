@@ -8,8 +8,8 @@ export default function App() {
 
     <>
       
-      {/*Home />*/}
-      <ListCity />
+      <Home />
+     
       
       
     </>

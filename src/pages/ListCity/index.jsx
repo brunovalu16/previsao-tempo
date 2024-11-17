@@ -1,8 +1,9 @@
-import { Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, Alert, FlatList } from 'react-native';
 import { styles } from '../ListCity/style';
 import { useState, useEffect } from 'react'; //serve para analizar o comportamento e renderizar na tela
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Api } from '../../../src/config/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Input from '../../components/Input';
 import List from '../../components/List';
@@ -11,12 +12,83 @@ import List from '../../components/List';
 export default function ListCity() {
     
     //aqui eu uso useState - city é o State e setCity é a mecanica dela "set" dela 
-    const [city, setCity] = useState("Goiânia");
+    const [city, setCity] = useState("");
     const [ weatherData, setWeatherData] = useState(null);
     const [ search, setSearch ] = useState("");
+    const [ storegeCity , setStoregeCity ] = useState([]);
+    const [ weatherCity , setWeatherCity ] = useState([]);
 
 
 /*=============================================== FUNÇÕES ===============================================*/
+
+
+//função para armazenar no AsyncStorage
+const storegeData = async () => {
+    try {
+        await AsyncStorage.setItem ("@previsao_do_tempo_cities", JSON.stringify(storegeCity))
+        console.log("armazenado com sucesso!")
+    }
+    catch (error){
+        console.error("Não foi adicionado", error)
+    }
+}
+
+//função para remove no AsyncStorage
+const removeStorege = async() => {
+    try {
+        await AsyncStorage.clear ()
+        setWeatherCity([])
+        setStoregeCity([])
+        console.log("removido  com sucesso!")
+    }
+    catch (error){
+        console.error("Não foi adicionado", error)
+    }
+}
+
+useEffect(() => {
+    //removeStorege()
+    storegeData()
+    getStoregeData()
+    console.log(weatherCity)
+}, [storegeCity]);
+
+
+//função que recupera o que foi armazenado no AsyncStorage
+const getStorageData = async () => {
+    try {
+        await AsyncStorage.getItem ("@previsao_do_tempo_cities")
+        .then(cities => {
+        const cityData = cities ? JSON.parse(cities) : []
+        const dataArray = []
+        cityData.forEach(city => {
+            Api(city)
+            .then(data =>{
+                dataArray.push({
+                    temp:data.main.temp,
+                    description: data.weather[0].description,
+                    city: city
+                })
+                if (dataArray.length === cityData.length) {
+                    setWeatherCity(dataArray) 
+                }
+            })
+        });
+        })
+    }
+    catch (error){
+        console.error("Não foi adicionado", error)
+    }
+}
+
+// função para criar o renderItem
+const renderItem =({item}) => (
+    <List
+            city={item.city}
+            temp={item.temp}
+            onRemovePress={handleRemovePress}
+        />
+)
 
 
 // Função para buscar dados climáticos e atualizar weatherData
@@ -58,15 +130,19 @@ return (
         <Input
             Titulo="Adicione um local..."
             onChangeText={(text) => setSearch(text)} // Atualiza a pesquisa
-            onPress={() => setCity(search)} // Define city com o valor de pesquisa ao pressionar
+            onPress={() => setStoregeCity(city => [...city, search])} // Define city com o valor de pesquisa ao pressionar
         />
 
     {/* LISTA COM DADOS CLIMÁTICOS */}
-        <List
-            city={city}
-            weatherData={weatherData}
-            onRemovePress={handleRemovePress}
+        
+        
+        <FlatList
+            data={weatherCity}
+            keyExtractor={item => item.city}
+            horizontal= {false}
+            renderItem={renderItem}
         />
+        
     </View>
     )
 

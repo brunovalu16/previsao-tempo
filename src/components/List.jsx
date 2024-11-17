@@ -1,11 +1,11 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useState, useEffect } from 'react'; //serve para analizar o comportamento e renderizar na tela
-import { Api } from '../config/api';
 
 
 
-export default function List( {city, weatherData, onRemovePress} ) {
+
+
+export default function List( {city, temp, onRemovePress} ) {
     
     
 
@@ -17,15 +17,7 @@ export default function List( {city, weatherData, onRemovePress} ) {
     }
 
 
-    // Função para buscar dados climáticos e atualizar weatherData
-    const fetchWeather = async () => {
-        const data = await Api(city);
-        setWeatherData(data);
-    };
 
-    useEffect(() => {
-        fetchWeather();
-    }, [city]); /*lista de dependências */
 
 
 
@@ -36,7 +28,7 @@ export default function List( {city, weatherData, onRemovePress} ) {
     <View style={styles.list}>
         <View style={styles.square1}>
             <Text style={styles.TextGrau}>
-                {weatherData ? Math.round(weatherData.main.temp) : "0"}°
+                {temp ? Math.round(temp) : "0"}°
             </Text>
 
             <Text style={styles.Text}> {city} </Text>

@@ -1,11 +1,10 @@
-import { StyleSheet, TextInput } from "react-native";
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
        backgroundColor: "#5F53E7",
         flex: 1,
         paddingTop: 30,
-        
     },
 
     img: {
@@ -16,54 +15,43 @@ export const styles = StyleSheet.create({
 
     containermaster: {
         marginLeft: 70,
-        marginTop: 10,
+        marginTop: 90,
     },
 
     containersquare: {
-        width: '70%',             
-        height: '45%',            
-        backgroundColor: 'transparent', 
-        borderColor: '#fff',    
-        borderWidth: 1,         
-        borderRadius: 30,
-        position: 'relative',
-        marginTop: 100,
-        marginLeft: 50
+      width: 250,            
+      height: 300,            
+      backgroundColor: 'transparent',
+      borderColor: '#fff',
+      borderWidth: 1,
+      borderRadius: 30,
+      marginTop: 20,
+      justifyContent: 'center',
+      alignItems: 'center',    
     },
 
     imageInsideSquare: {
-        width: 270,            
-        height: 200,            
-        alignSelf: 'center',
-        marginTop: -100,
-        position: 'absolute',
-        
+        top: '-25%'                  
     },
 
     texcity: {
-        position: 'absolute',
-        marginTop: 100,
-        marginLeft: 100,
+        marginTop: -90,
         color: "#fff",
         letterSpacing: 2,
     },
 
     textgraucelsius: {
-        position: 'absolute',
-        marginTop: 120,
-        marginLeft: 60,
+        alignSelf: 'center',
         color: "#b7b7b7",
         fontSize: 140,
         letterSpacing: -15,
     },
 
     texclimate: {
-        position: 'absolute',
-        marginTop: 320,
+        marginTop: 10,
         letterSpacing: 1,
         color: "#b7b7b7",
-       alignSelf: 'center'
-      
+        textAlign: 'center',
     },
 
     textime: {
@@ -112,13 +100,6 @@ export const styles = StyleSheet.create({
         fontSize: 10,      
       },
 
-
-
-
-
-   
-
-    
 
 });
 

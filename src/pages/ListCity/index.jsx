@@ -3,10 +3,9 @@ import { Text, View, Image, TextInput, TouchableOpacity, Alert, FlatList } from 
 import { styles } from '../ListCity/style';
 import { useState, useEffect } from 'react'; //serve para analizar o comportamento e renderizar na tela
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { Api } from '../../../src/config/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
+import { Api } from '../../../src/config/api';
 import Input from '../../components/Input';
 import List from '../../components/List';
 
@@ -50,7 +49,7 @@ const removeStorege = async() => {
 useEffect(() => {
     //removeStorege()
     storegeData()
-    getStoregeData()
+    getStorageData()
     console.log(weatherCity)
 }, [storegeCity]);
 
@@ -122,11 +121,12 @@ const handleRemovePress = () => {
                 onPress: () => {
                     // Lógica para remover a cidade
                     console.log("Cidade removida");
-                    // Aqui você pode adicionar uma função para realmente remover a cidade
+                    // Aqui vai a função para realmente remover a cidade
                 }
             }
         ],
-        { cancelable: true } //Permite que o usuário feche o alerta ao tocar fora dele, se necessário.
+        { cancelable: true }
+        //Permite que o usuário feche o alerta ao tocar fora dele, se necessário.
     );
 };
 
@@ -166,10 +166,7 @@ return (
         />
         
 
-    {/* COMPONENTE INPUT */}
-        <Input Titulo="Adicione um local..." onChangeText={(text) => setSearch(text)} // Atualiza a pesquisa
-               onPress={() => {setCity(search)}}
-        />
+    
 
     {/* COMPONENTE LIST */}
         <List city={city} weatherData={weatherData} onRemovePress={handleRemovePress}/>

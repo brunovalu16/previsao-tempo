@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Api } from '../../../src/config/api';
 import Input from '../../components/Input';
 import List from '../../components/List';
+import Header from '../../components/Header';
 
 
 export default function ListCity() {
@@ -142,11 +143,7 @@ const handleRemovePress = () => {
 return ( 
     <View style={styles.container}>
     
-    {/* LOGO SKY TRACKER */}
-        <Image
-            source={require("../../assets/img/logo-skyTracker.png")}
-            style={styles.img}
-        />
+    <Header />
 
     {/* INPUT E BOTÃO LUPA */}
         <Input
@@ -168,8 +165,7 @@ return (
 
     
 
-    {/* COMPONENTE LIST */}
-        <List city={city} weatherData={weatherData} onRemovePress={handleRemovePress}/>
+  
     
 
     </View>

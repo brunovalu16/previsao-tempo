@@ -2,36 +2,20 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 
-
-
-
-
 export default function List( {city, temp, onRemovePress} ) {
     
-
-
-/*=============================================== FUNÇÕES ===============================================*/
-
-
-    const handleRemovePress = () => {
+const handleRemovePress = () => {
         Alert.alert("Deseja realmente excluir essa cidade?")
     }
 
-
-
-   // Função para buscar dados climáticos e atualizar weatherData
+    // Função para buscar dados climáticos e atualizar weatherData
     const fetchWeather = async () => {
         const data = await Api(city);
         setWeatherData(data);
     };
 
 
-
-
-
-/*=============================================== FIM FUNÇÕES ===============================================*/
-
-    return(
+return(
           
     <View style={styles.list}>
         <View style={styles.square1}>
@@ -52,7 +36,7 @@ export default function List( {city, temp, onRemovePress} ) {
 
 const styles=StyleSheet.create({
     list:{
-        top: '5%'
+        paddingBottom: 10,
     },
 
     square1: {
@@ -68,6 +52,7 @@ const styles=StyleSheet.create({
         flexDirection: 'row', 
         alignItems: 'center', 
         justifyContent: 'space-between',
+        
     },
 
     Text: {

@@ -15,17 +15,18 @@ export default function ButtonCriar() {
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: '90%',
+        width: '70%',
         minHeight: 56,
         maxHeight: 56,
-        backgroundColor: '#fff',
+        backgroundColor: '#b7b7b7',
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 20
+        marginBottom: 20,
+        alignSelf: 'center',
     },
 
     title: {
-        color: '#4ea3dc'
+        color: '#5f53e7'
     },
 });

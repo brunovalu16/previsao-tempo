@@ -73,9 +73,11 @@ return (
         <Input Titulo="Pesquise um local..." 
         onChangeText={(text) => setSearch(text)}
         onPress={() => setCity(search)} />
+
 */}
             <ListHome />
             <ButtonCriar />
     </View>
+
     );
 }

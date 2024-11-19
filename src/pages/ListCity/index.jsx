@@ -26,7 +26,7 @@ export default function ListCity() {
 //função para armazenar no AsyncStorage
 const storegeData = async () => {
     try {
-        await AsyncStorage.setItem ("@previsao_do_tempo_cities", JSON.stringify(storegeCity))
+        await AsyncStorage.setItem("@previsao_do_tempo_cities", JSON.stringify(storegeCity))
         console.log("armazenado com sucesso!")
     }
     catch (error){
@@ -49,9 +49,8 @@ const removeStorege = async() => {
 
 useEffect(() => {
     //removeStorege()
-    storegeData()
     getStorageData()
-    console.log(weatherCity)
+    
 }, [storegeCity]);
 
 
@@ -63,6 +62,7 @@ const getStorageData = async () => {
         const cityData = cities ? JSON.parse(cities) : []
         const dataArray = []
         cityData.forEach(city => {
+            console.log(city)
             Api(city)
             .then(data =>{
                 dataArray.push({
@@ -90,20 +90,6 @@ const renderItem =({item}) => (
             onRemovePress={handleRemovePress}
         />
 )
-
-
-// Função para buscar dados climáticos e atualizar weatherData
-const fetchWeather = async () => {
-    const data = await Api(city);
-    setWeatherData(data);
-};
-
-useEffect(() => {
-    if (city) fetchWeather();
-}, [city]);
-
-
-
 
 
 // Função para remover a cidade
@@ -149,7 +135,11 @@ return (
         <Input
             Titulo="Adicione um local..."
             onChangeText={(text) => setSearch(text)} // Atualiza a pesquisa
-            onPress={() => setStoregeCity(city => [...city, search])} // Define city com o valor de pesquisa ao pressionar
+            onPress={() => {
+                setStoregeCity(city => [...city, search])
+                storegeData()
+            }
+           } // Define city com o valor de pesquisa ao pressionar
         />
 
     {/* LISTA COM DADOS CLIMÁTICOS */}

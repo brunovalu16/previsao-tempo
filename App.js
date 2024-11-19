@@ -18,7 +18,7 @@ export default function App() {
       {/* <Home /> <ListCity />  <List /> <ListHome /> */}
       
       <StatusBar barStyle="light-content" backgroundColor="#252072" />
-      <Home />
+      <ListCity /> 
       
      </>   
 

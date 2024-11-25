@@ -42,7 +42,7 @@ const getStorageData = async () => {
     }
 }
 useEffect(() => {
-    getStorageData()
+    //getStorageData()
     console.log(weatherCity)
 })
 

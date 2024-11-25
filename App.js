@@ -11,7 +11,11 @@ export default function App() {
 
       {/* <Home /> <ListCity />  <List /> <ListHome /> */}
       
-      <StatusBar barStyle="light-content" backgroundColor="#252072" />
+      <StatusBar
+        barStyle='light-content'
+        backgroundColor='#272271'
+        translucent
+      />
       <Routes />
       
      </>   

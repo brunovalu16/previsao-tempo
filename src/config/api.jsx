@@ -2,7 +2,7 @@
 // Aqui está a Api
 
 export async function Api(city) {
-    const APIKEY = 'e3d21089b3522f2c56a78c95678b68ee';
+    const APIKEY = '94cb612f91a5891e05f0436f70dc7de0';
 
     try{
 

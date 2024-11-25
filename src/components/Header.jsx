@@ -23,9 +23,10 @@ export const styles = StyleSheet.create({
     container: {
         backgroundColor: '#252072',
         width: '100%',
-        height: '8%',
+        height: 70,
         flexDirection:  'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 10
     },
 
     logo: {

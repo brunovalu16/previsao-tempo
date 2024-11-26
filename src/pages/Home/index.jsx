@@ -11,16 +11,6 @@ import Header from '../../components/Header';
 
 export default function Home(){
 
-    //aqui eu uso useState - city é o State e setCity é a mecanica dela "set" dela 
-    const [city, setCity] = useState("Goiânia");
-    const [ weatherData, setWeatherData] = useState(null);
-    const [ search, setSearch ] = useState("");
-    const [ storegeCity , setStoregeCity ] = useState([]);
-    const [ weatherCity , setWeatherCity ] = useState([]);
-
-
-
-
 return (
     <View style={styles.container}>
         <Image
@@ -35,7 +25,6 @@ return (
 */}
         <Header />
         <ListHome />
-        <ButtonCriar />
     </View>
     );
 }

@@ -1,50 +1,13 @@
-import { Text, View, Image, TextInput, TouchableOpacity, Alert, FlatList } from 'react-native';
+import { Text, View, Image, FlatList } from 'react-native';
 import { styles } from '../pages/Home/style';
-import { useState, useEffect } from 'react'; //serve para analizar o comportamento e renderizar na tela
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Api } from '../config/api';
-
-export default function Home(){
-
-    //aqui eu uso useState - city é o State e setCity é a mecanica dela "set" dela 
-    const [city, setCity] = useState("");
-    const [ weatherData, setWeatherData] = useState(null);
-    const [ search, setSearch ] = useState("");
-    const [ storegeCity , setStoregeCity ] = useState([]);
-    const [ weatherCity , setWeatherCity ] = useState([]);
+import { useWeather } from '../context/WeatherContext';
 
 
-//função que recupera o que foi armazenado no AsyncStorage
-const getStorageData = async () => {
-    try {
-        await AsyncStorage.getItem ("@previsao_do_tempo_cities")
-        .then(cities => {
-        const cityData = cities ? JSON.parse(cities) : []
-        const dataArray = []
-        cityData.forEach(city => {
-            Api(city)
-            .then(data =>{
-                dataArray.push({
-                    temp:data.main.temp,
-                    description: data.weather[0].description,
-                    city: city
-                })
-                if (dataArray.length === cityData.length) {
-                    setWeatherCity(dataArray) 
-                }
-            })
-        });
-        })
-    }
-    catch (error){
-        console.error("Não foi adicionado", error)
-    }
-}
-useEffect(() => {
-    //getStorageData()
-    console.log(weatherCity)
-})
+export default function ListHome(){
+//const [ weatherCity ] = useWeather()
+const { weatherCity } = useWeather();
+
 
 const renderItem=({item}) => (
     <View style={styles.container}>
@@ -75,13 +38,31 @@ const renderItem=({item}) => (
 
     return (
 
+        
+
       <FlatList
-        data={weatherCity}
-        keyExtractor={item => item.city}  
-        horizontal= {true}
-        renderItem={renderItem}
-      />  
+      data={weatherCity.filter((item, index, self) =>
+          index === self.findIndex((t) => t.city === item.city)
+      )} // Remove duplicatas
+      keyExtractor={(item, index) => `${item.city}-${index}`} // Combina cidade com índice
+      horizontal={true}
+      renderItem={renderItem}
+    />
+  
+
+
       
     );
 }
+
+
+{/* 
+      <FlatList
+        data={weatherCity}
+        // keyExtractor={item => item.city}  
+        keyExtractor={(item) => item?.city || Math.random().toString()}
+        horizontal= {true}
+        renderItem={renderItem}
+      /> 
+      */} 
 
